@@ -20,7 +20,7 @@ mongoose
   });
 app.use(
   cors({
-    origin: ["https://registration-three-rho.vercel.app/"],
+    origin: ["https://registration-apii.vercel.app/"],
     methods: ["POST", "GET"],
     credentials: true,
   })
