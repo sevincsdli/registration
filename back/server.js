@@ -15,12 +15,7 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-app.use(cors(
-  {
-    origin:["http://localhost:3000","https://meal-order-hz8q.onrender.com"],
-   
-  }
-));
+app.use(cors());
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use("/", userRoute);

@@ -30,6 +30,8 @@
             <p class="text-center text-red-600 text-[1.1rem]">
               {{ error }}
             </p>
+                            <img src="../assets/loading.gif" alt="" class="w-14 h-14 mx-auto" v-if="loading">
+
             </div>
           
         </div>
@@ -49,7 +51,8 @@
            password:"",
            repassword:"",
            info:"",
-       error:""
+       error:"",
+       loading:false
           }
       },
       methods:
@@ -57,18 +60,24 @@
     
           async signIn(){
           try {
+            this.loading=true
+
           const response = await axios.post('login', {
             email: this.email,
             password: this.password,
           });
+          if(response){
+            this.loading=false
+          }
           console.log('OK:', response.data);
-          this.info=response.data;
+    
 
           const token = response.data.token;
         localStorage.setItem('Token', token);
           this.email = '';
           this.password = '';
         } catch (error) {
+          this.loading=false
           this.error=error.message;
           console.error('Login failed:::', error);
         }
